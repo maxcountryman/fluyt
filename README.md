@@ -22,14 +22,17 @@ Example usage:
 
 ```clojure
 (ns my-app.core
-  (:require [fluyt.requests :as requests]))
+  (:require [cljs.core.async :refer [<!]]
+            [fluyt.requests :as requests])
+  (:require-macros [cljs.core.async.macros :refer [go]]))
+
+(enable-console-print!)
 
 ;; read the resp off the channel
-(go (prn (<! (requests/get "http://example.com/"))))
+(go (prn (<! (requests/get "http://httpbin.org/get" {:as :json}))))
 
 ;; or pass in a handler fn
-(defn handler [resp] (prn resp))
-(requests/get "http://example.com/" {:handler handler})
+(requests/get "http://httpbin.org/get" {:handler prn :as :json})
 ```
 
 ## License
