@@ -1,6 +1,6 @@
 # Fluyt
 
-*Clojure HTTP requests*
+*ClojureScript HTTP requests*
 
 **Fluyt is not feature-complete! API subject to change.**
 
