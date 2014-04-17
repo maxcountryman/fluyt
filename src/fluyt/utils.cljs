@@ -5,7 +5,13 @@
   "Given a string and optionally a flag to convert keys to keywords (default
   true), returns ClojureScript data for the given JSON string."
   [s & [keywordize-keys?]]
-  (js->clj (.parse js/JSON s) :keywordize-keys (or keywordize-keys? true)))
+  (try
+    (let [json (.parse js/JSON s)]
+      (js->clj json :keywordize-keys (or keywordize-keys? true)))
+
+    ;; in cases where we are passed an improperly formatted string, return the
+    ;; string back to the caller
+    (catch js/SyntaxError _ s)))
 
 (defn k-meth->s-meth
   "Given a valid keyword, returns its string value; nil otherwise."
