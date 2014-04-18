@@ -4,6 +4,9 @@
 
 **Fluyt is not feature-complete! API subject to change.**
 
+This library aims to present an API similar to [clj-http](https://github.com/dakrone/clj-http) in the context of ClojureScript. It wraps `goog.net.XhrIo` by returning
+responses in core.async channels.
+
 ![Dutch fluyt, 1677](https://upload.wikimedia.org/wikipedia/commons/c/c7/Wenceslas_Hollar_-_A_Flute_%28State_2%29.jpg)
 
 ## Installation
